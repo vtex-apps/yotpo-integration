@@ -1,5 +1,5 @@
 {
-  "name": "admin-example",
+  "name": "yotpo-integration",
   "vendor": "vtex",
   "version": "0.0.2",
   "title": "Example Admin App",
@@ -15,6 +15,8 @@
     "react": "3.x",
     "admin": "0.x",
     "messages": "1.x",
-    "docs": "0.x"
-  }
+    "docs": "0.x",
+    "store": "0.x"
+  },
+  "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }
