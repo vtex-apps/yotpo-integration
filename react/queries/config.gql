@@ -1,0 +1,9 @@
+query Config {
+  config {
+    title
+    schema
+    clientId
+    clientSecret
+    storeId
+  }
+}

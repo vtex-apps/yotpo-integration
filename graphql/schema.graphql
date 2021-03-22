@@ -1,0 +1,20 @@
+type Query {
+  config: Config @cacheControl(scope: PRIVATE)
+}
+
+type Mutation {
+  saveSettings(
+    title: String
+    clientId: String
+    clientSecret: String
+    storeId: String
+  ): Boolean
+}
+
+type Config {
+  schema: Boolean
+  title: String
+  clientId: String
+  clientSecret: String
+  storeId: String
+}

@@ -16,7 +16,18 @@
     "admin": "0.x",
     "messages": "1.x",
     "docs": "0.x",
-    "store": "0.x"
+    "store": "0.x",
+    "node": "6.x",
+    "graphql": "1.x"
+  },
+  "billingOptions": {
+    "termsURL": "https://compliance.vtex.com/gdpr/policies/vtex-privacy-policy",
+    "support": {
+      "url": "https://help-tickets.vtex.com/en/support?app=vtex.yotpo-integration"
+    },
+    "free": true,
+    "type": "free",
+    "availableCountries": ["*"]
   },
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }
