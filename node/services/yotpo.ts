@@ -1,152 +1,156 @@
+/* eslint-disable vtex/prefer-early-return */
 /* eslint-disable no-console */
 /* eslint-disable no-await-in-loop */
-// import { parseString } from 'xml2js'
 
-// import { resolvers } from '../resolvers'
-
-// const USPS_API_LIMIT = 10
-// const USPS_DELIVERED_STATUS = 'Delivered'
+import { resolvers } from '../resolvers'
 
 export const yotpo = async (ctx: Context) => {
   const {
     // eslint-disable-next-line no-empty-pattern
-    clients: {},
+    clients: { yotpo: YotpoClient, oms },
   } = ctx
+
+  const settings = await resolvers.Query.config(null, null, ctx)
+  console.log('settings', settings)
+
+  // const { clientId, clientSecret } = settings
+
+  // if (!settings.token) {
+  //   const tokenBody = JSON.stringify({
+  //     secret: clientSecret,
+  //   })
+
+  // const token = await YotpoClient.getToken(clientId, tokenBody)
+  //   settings.token = token
+  //   await resolvers.Mutation.saveSettings(null, settings, ctx)
+  // }
+
+  const orders: any = await resolvers.Query.getOrders(null, null, ctx)
+  console.log('orders', orders)
+
+  orders.forEach(async (order: any) => {
+    const orderInfo = await oms.getOrder(order.orderId)
+    console.log('order info', orderInfo)
+
+    const orderBody = JSON.stringify({
+      purchase: {
+        external_order_id: 'string',
+        order_date: '2021-03-25T13:57:05Z',
+        checkout_token: 'string',
+        payment_method: 'string',
+        currency: 'string',
+        total_price: 20,
+        subtotal_price: 10,
+        landing_site_url: 'string',
+        payment_status: 'string',
+        cancellation: {
+          cancellation_date: '2021-03-28T13:35:57Z',
+        },
+        customer: {
+          external_id: '2sadfasdf',
+          first_name: 'string',
+          last_name: 'string',
+          email: 'string',
+          phone_number: 'string',
+          custom_properties: {
+            key1: 'value1',
+            key2: 'value2',
+          },
+          accepts_sms_marketing: true,
+          accepts_email_marketing: true,
+        },
+        billing_address: {
+          address1: 'string',
+          address2: 'string',
+          city: 'string',
+          company: 'string',
+          state: 'string',
+          zip: 'string',
+          province_code: 'string',
+          country_code: 'string',
+          phone_number: 'string',
+        },
+        shipping_address: {
+          address1: 'string',
+          address2: 'string',
+          city: 'string',
+          company: 'string',
+          state: 'string',
+          zip: 'string',
+          province_code: 'string',
+          country_code: 'string',
+          phone_number: 'string',
+        },
+        line_items: [
+          {
+            quantity: 0,
+            total_price: 0,
+            subtotal_price: 0,
+            coupon_code: 'string',
+            custom_properties: {
+              key1: 'value1',
+              key2: 'value2',
+            },
+            product: {
+              external_id: 'string',
+              name: 'string',
+              description: 'string',
+              url: 'string',
+              price: 0,
+              currency: 'string',
+              inventory_quantity: 0,
+              is_discontinued: true,
+              group_name: 'string',
+              image_url: 'string',
+              mpn: 'string',
+              brand: 'string',
+              sku: 'string',
+              gtins: [
+                {
+                  declared_type: 'string',
+                  value: 'string',
+                },
+              ],
+            },
+          },
+        ],
+        fulfillments: [
+          {
+            external_id: 'string',
+            fulfillment_date: '2021-03-31T11:58:51Z',
+            status: 'pending',
+            shipment_info: {
+              shipment_status: 'label_printed',
+              tracking_company: 'string',
+              tracking_url: 'string',
+              tracking_number: 'string',
+            },
+            fulfilled_items: [
+              {
+                external_product_id: 'string',
+                quantity: 0,
+              },
+            ],
+          },
+        ],
+      },
+    })
+
+    try {
+      await YotpoClient.postOrderInfo(
+        settings.token,
+        settings.clientId,
+        orderBody
+      )
+
+      // UPDATE ORDER
+    } catch (error) {
+      console.log(error)
+    }
+  })
+
+  // check if settings has a token
+  // if not, generate token
+  // Query orders
+  // iterate through orders, get data from oms, and send data
 }
-
-//   const userId = `"${settings.userId}"`
-//   const clientIp = ctx.request.ip
-//   const sourceId = account
-//   const pageSize = USPS_API_LIMIT
-//   let returned = 0
-//   let createdBefore = null
-
-//   do {
-//     const args = { carrier: CARRIERS.USPS, pageSize, createdBefore }
-//     const shipments: Shipment[] = await resolvers.Query.shipmentsByCarrier(
-//       null,
-//       args,
-//       ctx
-//     )
-
-//     if (shipments.length) {
-//       const oldestDate = new Date(shipments[shipments.length - 1].createdIn)
-//       oldestDate.setSeconds(oldestDate.getSeconds() - 1)
-//       createdBefore = oldestDate.toISOString()
-
-//       const trackingNumbersXml = shipments.map((shipment) => {
-//         return `<TrackID ID="${shipment.trackingNumber}"/>`
-//       })
-
-//       const xml = `<TrackFieldRequest USERID=${userId}><Revision>1</Revision><ClientIp>${clientIp}</ClientIp><SourceId>${sourceId}</SourceId>${trackingNumbersXml.join(
-//         ''
-//       )}</TrackFieldRequest>`
-
-//       const xmlResponse = await uspsClient.getTracking(xml)
-
-//       let updates: Array<Promise<string | void | OMSOrderTracking>> = []
-
-//       parseString(xmlResponse, async (_err, result: UspsParsedResult) => {
-//         const trackingItems = result.TrackResponse.TrackInfo
-
-//         updates = trackingItems.reduce(
-//           (
-//             promises: Array<Promise<string | void | OMSOrderTracking>>,
-//             trackingInfo
-//           ) => {
-//             const matchedShipment = shipments.find((shipment) => {
-//               return shipment.trackingNumber === trackingInfo?.$.ID
-//             })
-
-//             // console.log('matchedShipment', matchedShipment)
-//             // console.log('trackingSummary', trackingInfo.TrackSummary)
-//             if (!matchedShipment?.id || !trackingInfo.StatusCategory) {
-//               return promises
-//             }
-//             console.log('matched', matchedShipment?.orderId)
-
-//             const shipmentId = matchedShipment.id
-//             const [status] = trackingInfo.StatusCategory
-//             const isDelivered = status === USPS_DELIVERED_STATUS
-//             const [trackSummary] = trackingInfo.TrackSummary
-//             const trackingEvents: TrackingEvent[] = []
-
-//             if (trackSummary) {
-//               const [city] = trackSummary.EventCity
-//               const [state] = trackSummary.EventState
-//               const [description] = trackSummary.Event
-//               const [date] = trackSummary.EventDate
-
-//               trackingEvents.push({ city, state, description, date })
-//             }
-
-//             if (trackingInfo.TrackDetail) {
-//               const pastEvents = trackingInfo.TrackDetail.map((event) => {
-//                 const [city] = event.EventCity
-//                 const [state] = event.EventState
-//                 const [description] = event.Event
-//                 const [date] = event.EventDate
-
-//                 return { city, state, description, date }
-//               })
-
-//               trackingEvents.push(...pastEvents)
-//             }
-
-//             const trackingUpdate = {
-//               isDelivered,
-//               events: trackingEvents.reverse(),
-//             }
-//             // console.log('tracking update', trackingUpdate)
-
-//             promises.push(
-//               oms.updateOrderTracking(
-//                 matchedShipment.orderId,
-//                 matchedShipment.invoiceId,
-//                 trackingUpdate
-//               )
-//             )
-
-//             const interaction: AddInteractionArgs = {
-//               shipmentId,
-//               delivered: isDelivered,
-//             }
-
-//             // console.log('interaction', interaction)
-
-//             promises.push(
-//               resolvers.Mutation.addInteraction(null, interaction, ctx)
-//             )
-
-//             const shipment = {
-//               id: matchedShipment.id,
-//               delivered: isDelivered,
-//             }
-
-//             // console.log('update shipment', shipment)
-
-//             promises.push(
-//               resolvers.Mutation.updateShipment(null, shipment, ctx)
-//             )
-
-//             return promises
-//           },
-//           []
-//         )
-//       })
-
-//       try {
-//         if (updates) {
-//           await Promise.allSettled(updates)
-//         }
-//       } catch (err) {
-//         logger.error({
-//           error: err,
-//           message: 'ShipmentTracker-USPSTrackingError',
-//         })
-//       }
-//     }
-
-//     returned = shipments.length || 0
-//   } while (returned === USPS_API_LIMIT)
-// }

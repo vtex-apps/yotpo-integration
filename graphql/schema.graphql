@@ -1,5 +1,6 @@
 type Query {
   config: Config @cacheControl(scope: PRIVATE)
+  getOrders: [Order] @cacheControl(scope: PRIVATE, maxAge: Short)
 }
 
 type Mutation {
@@ -9,6 +10,7 @@ type Mutation {
     clientSecret: String
     storeId: String
   ): Boolean
+  addOrder(orderId: String, posted: Boolean): String
 }
 
 type Config {
@@ -17,4 +19,11 @@ type Config {
   clientId: String
   clientSecret: String
   storeId: String
+  token: String
+}
+
+type Order {
+  id: String
+  orderId: String
+  posted: Boolean
 }

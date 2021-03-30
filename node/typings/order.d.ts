@@ -40,15 +40,3 @@ interface Item {
   description: string | null
   unitMultiplier: number
 }
-
-interface TrackingUpdate {
-  isDelivered: boolean
-  events?: TrackingEvent[]
-}
-
-interface TrackingEvent {
-  city?: string
-  state?: string
-  description?: string
-  date?: string
-}

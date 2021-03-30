@@ -5,5 +5,6 @@ query Config {
     clientId
     clientSecret
     storeId
+    token
   }
 }

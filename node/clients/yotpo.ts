@@ -11,11 +11,21 @@ export default class YotpoClient extends ExternalClient {
     })
   }
 
-  public async postOrderInfo(token: string, storeId: string): Promise<string> {
-    return this.http.post(`/v3/stores/${storeId}/register_purchase`, {
-      headers: {
-        token,
-      },
-    })
+  public async getToken(clientId: string, body: any): Promise<string> {
+    return this.http.post(`/core/v3/stores/${clientId}/access_tokens`, body)
+  }
+
+  public async postOrderInfo(
+    token: string,
+    clientId: string,
+    body: any
+  ): Promise<string> {
+    return this.http.post(
+      `/core/v3/stores/${clientId}/register_purchase`,
+      body,
+      {
+        headers: { token },
+      }
+    )
   }
 }

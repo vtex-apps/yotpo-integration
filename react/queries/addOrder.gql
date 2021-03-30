@@ -1,0 +1,3 @@
+mutation AddOrder($orderId: String, $posted: Boolean) {
+  addOrder(orderId: $orderId, posted: $posted)
+}

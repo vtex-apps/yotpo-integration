@@ -1,3 +1,6 @@
 /* eslint-disable prettier/prettier */
+import { yotpo } from './yotpo'
 
-export const yotpoService = {}
+export const yotpoService = {
+  yotpo,
+}

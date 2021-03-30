@@ -3,6 +3,7 @@ import { IOClients } from '@vtex/api'
 
 import OMSClient from './oms'
 import RequestHub from '../utils/Hub'
+import YotpoClient from './yotpo'
 
 // Extend the default IOClients implementation with our own custom clients.
 export class Clients extends IOClients {
@@ -14,5 +15,7 @@ export class Clients extends IOClients {
     return this.getOrSet('orders', OMSClient)
   }
 
-  //Yotpo Client
+  public get yotpo() {
+    return this.getOrSet('yotpo', YotpoClient)
+  }
 }
