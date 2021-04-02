@@ -4,13 +4,21 @@ type Query {
 }
 
 type Mutation {
-  saveSettings(
-    title: String
-    clientId: String
-    clientSecret: String
-    storeId: String
-  ): Boolean
-  addOrder(orderId: String, posted: Boolean): String
+  saveSettings(title: String, clientId: String, clientSecret: String): Boolean
+  addOrder(
+    orderId: String
+    posted: Boolean
+    orderDate: String
+    customerId: String
+    customerFirstName: String
+    customerLastName: String
+    customerEmail: String
+    quantity: Int
+    productId: String
+    productName: String
+    productUrl: String
+  ): String
+  updateOrder(id: ID): String
 }
 
 type Config {
@@ -18,7 +26,6 @@ type Config {
   title: String
   clientId: String
   clientSecret: String
-  storeId: String
   token: String
 }
 
@@ -26,4 +33,13 @@ type Order {
   id: String
   orderId: String
   posted: Boolean
+  orderDate: String
+  customerId: String
+  customerFirstName: String
+  customerLastName: String
+  customerEmail: String
+  quantity: Int
+  productId: String
+  productName: String
+  productUrl: String
 }

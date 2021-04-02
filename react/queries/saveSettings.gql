@@ -2,12 +2,6 @@ mutation SaveSettings(
   $title: String
   $clientId: String
   $clientSecret: String
-  $storeId: String
 ) {
-  saveSettings(
-    title: $title
-    clientId: $clientId
-    clientSecret: $clientSecret
-    storeId: $storeId
-  )
+  saveSettings(title: $title, clientId: $clientId, clientSecret: $clientSecret)
 }

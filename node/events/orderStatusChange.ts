@@ -13,21 +13,39 @@ export async function orderStatusChange(ctx: StatusChangeContext) {
     return
   }
 
-  const order = await oms.getOrder(body.orderId)
-  console.log('event order =>', order)
+  let order: any
+  try {
+    order = await oms.getOrder(body.orderId)
+  } catch (error) {
+    console.log(error)
+  }
 
   if (!order) {
     return
   }
 
-  const data = {
-    orderId: body.orderId,
-    posted: false,
-  }
+  console.log('event order =>', order)
 
-  try {
-    await resolvers.Mutation.addOrder(null, data, ctx)
-  } catch (error) {
-    console.log(error)
-  }
+  order.items.forEach(async (item: any) => {
+    console.log('item =>', item)
+    const data = {
+      orderId: order.orderId,
+      posted: false,
+      orderDate: order.creationDate,
+      customerId: order.clientProfileData.userProfileId,
+      customerFirstName: order.clientProfileData.firstName,
+      customerLastName: order.clientProfileData.lastName,
+      customerEmail: order.clientProfileData.email,
+      quantity: item.quantity,
+      productId: item.productId,
+      productName: item.name,
+      productUrl: item.detailUrl,
+    }
+
+    try {
+      await resolvers.Mutation.addOrder(null, data, ctx)
+    } catch (error) {
+      console.log(error)
+    }
+  })
 }

@@ -1,5 +1,7 @@
 {
-  "admin-example.navigation.label": "Example admin",
-  "admin-example.hello-world": "",
-  "appframe.navigation.example": ""
+  "admin/navigation.label": "admin/navigation.label",
+  "admin/settings.label": "admin/settings.label",
+  "admin/settings.id.label": "admin/settings.id.label",
+  "admin/settings.secret.label": "admin/settings.secret.label",
+  "admin/settings.button.label": "admin/settings.button.label"
 }

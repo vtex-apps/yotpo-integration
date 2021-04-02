@@ -3,5 +3,14 @@ query GetOrders {
     id
     orderId
     posted
+    orderDate
+    customerId
+    customerFirstName
+    customerLastName
+    customerEmail
+    quantity
+    productId
+    productName
+    productUrl
   }
 }

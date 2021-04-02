@@ -1,8 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 interface OMSOrder {
+  items: Item[]
   orderId: string
   status: 'invoiced' | 'cancel' | 'canceled'
   packageAttachment: PackageAttachment
+  creationDate: string
+  clientProfileData: any
 }
 
 interface OMSOrderTracking {

@@ -6,7 +6,7 @@ const getAppId = (): string => {
   return process.env.VTEX_APP_ID ?? ''
 }
 
-const SCHEMA_VERSION = 'v0.2'
+const SCHEMA_VERSION = 'v0.3'
 
 const schemaOrders = {
   properties: {
@@ -17,6 +17,42 @@ const schemaOrders = {
     posted: {
       type: 'boolean',
       title: 'Post Status',
+    },
+    orderDate: {
+      type: 'string',
+      title: 'Order Date',
+    },
+    customerId: {
+      type: 'string',
+      title: 'Customer ID',
+    },
+    customerFirstName: {
+      type: 'string',
+      title: 'Customer First Name',
+    },
+    customerLastName: {
+      type: 'string',
+      title: 'Customer Last Name',
+    },
+    customerEmail: {
+      type: 'string',
+      title: 'Customer Email',
+    },
+    quantity: {
+      type: 'integer',
+      title: 'Number of items',
+    },
+    productId: {
+      type: 'string',
+      title: 'Product ID',
+    },
+    productName: {
+      type: 'string',
+      title: 'Product Name',
+    },
+    productUrl: {
+      type: 'string',
+      title: 'Product URL',
     },
   },
   'v-indexed': ['orderId', 'posted'],
@@ -58,7 +94,6 @@ export const resolvers = {
         title: 'Yotpo Integration',
         clientId: '',
         clientSecret: '',
-        storeId: '',
         token: '',
       }
 
@@ -96,7 +131,22 @@ export const resolvers = {
 
       const result = await masterdata.searchDocuments({
         dataEntity: 'yotpoOrder',
-        fields: ['id', 'orderId', 'posted'],
+        fields: [
+          'id',
+          'orderId',
+          'posted',
+          'orderId',
+          'posted',
+          'orderDate',
+          'customerId',
+          'customerFirstName',
+          'customerLastName',
+          'customerEmail',
+          'quantity',
+          'productId',
+          'productName',
+          'productUrl',
+        ],
         where: `posted=${false}`,
         pagination: {
           page: 1,
@@ -123,7 +173,6 @@ export const resolvers = {
         title: 'Yotpo Integration',
         clientId: args.clientId,
         clientSecret: args.clientSecret,
-        storeId: args.storeId,
         token: args.token,
       }
 
@@ -148,6 +197,38 @@ export const resolvers = {
         .catch((err: any) => {
           return err.response.message
         })
+    },
+    updateOrder: async (
+      _: any,
+      args: any,
+      ctx: Context | StatusChangeContext
+    ) => {
+      const {
+        clients: { masterdata, hub },
+        vtex: { account, authToken },
+      } = ctx
+
+      const order: any = await masterdata.getDocument({
+        dataEntity: 'yotpoOrder',
+        id: args.id,
+        fields: ['id', 'orderId', 'posted'],
+      })
+
+      const posted = !order.posted
+      const headers = defaultHeaders(authToken)
+      await hub
+        .patch(
+          `http://api.vtex.com/api/dataentities/yotpoOrder/documents/${args.id}?an=${account}&_schema=${SCHEMA_VERSION}`,
+          {
+            posted,
+          },
+          headers
+        )
+        .then(() => {
+          return posted
+        })
+
+      return args.id
     },
   },
 }
