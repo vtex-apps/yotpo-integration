@@ -1,28 +1,26 @@
-# [ WORK IN PROGRESS ] Admin Example
+📢 Use this project, [contribute](https://github.com/vtex-apps/yotpo-integration) to it or open issues to help evolve it using [Store Discussion](https://github.com/vtex-apps/store-discussion).
 
-An example admin app that adds a menu button to the admin sidebar.
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 
-# PREVIEW NOTICE :construction:
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 
-We're working on the **admin builder**, which will allow you to define two files: `admin/routes.json` file with everything you need to create an admin interface (routes paths and components), and `admin/navigation.json` which alows your admin app to insert itself in the sidebar navigation. This is a temporary example!
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-### How to develop admins
+# Yotpo Integration
 
-1. Admins always declare routes in `/admin/app/<route>`
+Yotpo Integration is a VTEX IO native solution that allows stores to send order data to Yotpo, which is triggered when an order is invoiced.
 
-2. Declare the `admin` builder in your manifest
+## Configuration
+### Step 1 Installing the Yotpo Integration app
 
-3. When installed, the user navigates to `/admin/<route>`, but your app runs in an iframe that points to `/admin/app/<route>`.
+Using your terminal, log in to the desired VTEX account and run the following command:
 
-4. You can develop directly in the `/admin/app` route for convenience, but don't forget to test it inside the iframe. :)
+`vtex install vtex.yotpo-integration@0.x`
 
+### Step 2 - Adding in Yotpo Information 
 
-### Quickstart
+In the admin page, fill in the required fields of Client ID and Client Secret. This can be accessed from the Yotpo website, after creating an account and requesting developer access.
 
-1. Clone this repo
+## Customization
 
-2. `yarn --cwd react/` for code completion
-
-3. `vtex link`
-
-4. Navigate to `workspace--account.myvtex.com/admin/app/example`
+In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).

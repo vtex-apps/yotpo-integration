@@ -124,7 +124,7 @@ export const resolvers = {
 
       return settings
     },
-    getOrders: async (_: any, __: any, ctx: Context) => {
+    getOrders: async (_: any, __: any, ctx: Context | StatusChangeContext) => {
       const {
         clients: { masterdata },
       } = ctx
@@ -159,7 +159,11 @@ export const resolvers = {
     },
   },
   Mutation: {
-    saveSettings: async (_: any, args: any, ctx: Context) => {
+    saveSettings: async (
+      _: any,
+      args: any,
+      ctx: Context | StatusChangeContext
+    ) => {
       const {
         // eslint-disable-next-line no-empty-pattern
         clients: {},

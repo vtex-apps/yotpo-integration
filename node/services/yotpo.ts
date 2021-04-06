@@ -4,7 +4,7 @@
 
 import { resolvers } from '../resolvers'
 
-export const yotpo = async (ctx: Context) => {
+export const yotpo = async (ctx: Context | StatusChangeContext) => {
   const {
     // eslint-disable-next-line no-empty-pattern
     clients: { yotpo: YotpoClient },

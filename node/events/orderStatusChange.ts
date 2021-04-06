@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import { resolvers } from '../resolvers'
+import { yotpo } from '../services/yotpo'
 
 export async function orderStatusChange(ctx: StatusChangeContext) {
   const {
@@ -48,4 +49,6 @@ export async function orderStatusChange(ctx: StatusChangeContext) {
       console.log(error)
     }
   })
+
+  await yotpo(ctx)
 }
