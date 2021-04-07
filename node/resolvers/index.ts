@@ -111,7 +111,6 @@ export const resolvers = {
           await hub.put(url, schemaOrders, headers)
         } catch (e) {
           if (e.response.status >= 400) {
-            console.log(e.response)
             schemaError = true
           }
         }
