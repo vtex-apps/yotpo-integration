@@ -4,10 +4,10 @@
 
 import { resolvers } from '../resolvers'
 
-export const yotpo = async (ctx: Context | StatusChangeContext) => {
+export const yotpo = async (items: any, ctx: Context | StatusChangeContext) => {
   const {
-    // eslint-disable-next-line no-empty-pattern
     clients: { yotpo: YotpoClient },
+    vtex: { logger },
   } = ctx
 
   const settings = await resolvers.Query.config(null, null, ctx)
@@ -26,11 +26,7 @@ export const yotpo = async (ctx: Context | StatusChangeContext) => {
     await resolvers.Mutation.saveSettings(null, settings, ctx)
   }
 
-  const orders: any = await resolvers.Query.getOrders(null, null, ctx)
-  console.log('orders =>', orders)
-
-  orders.forEach(async (order: any) => {
-    console.log('order =>', order)
+  items.forEach(async (order: any) => {
     const itemBody = {
       purchase: {
         external_order_id: order.orderId,
@@ -54,18 +50,18 @@ export const yotpo = async (ctx: Context | StatusChangeContext) => {
       },
     }
 
-    console.log('itemBody =>', itemBody)
-
     try {
-      // await YotpoClient.postOrderInfo(
-      //   settings.token,
-      //   settings.clientId,
-      //   itemBody
-      // )
-
+      await YotpoClient.postOrderInfo(
+        settings.token,
+        settings.clientId,
+        itemBody
+      )
       await resolvers.Mutation.updateOrder(null, { id: order.id }, ctx)
     } catch (error) {
-      console.log(error)
+      logger.error({
+        error,
+        message: 'YotpoIntegration-YotpoPostOrderError',
+      })
     }
   })
 }

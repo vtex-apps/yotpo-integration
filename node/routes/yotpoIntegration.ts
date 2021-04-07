@@ -5,7 +5,7 @@ export async function yotpoIntegration(ctx: Context) {
   const { response } = ctx
   // verify request
 
-  yotpoService.yotpo(ctx)
+  yotpoService.yotpo([], ctx)
 
   response.set('Cache-Control', 'no-cache')
   response.status = 200

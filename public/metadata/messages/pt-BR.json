@@ -1,0 +1,10 @@
+{
+  "name": "Yotpo Integration",
+  "headline": "Uma integração com o Yotpo",
+  "overview": "Envia novos pedidos para o Yotpo",
+  "features": ["Envia novos pedidos para o Yotpo"],
+  "websiteURL": "https://vtex.com/",
+  "support": {
+    "url": "https://help-tickets.vtex.com/en/support?app=vtex.yotpoIntegration"
+  }
+}

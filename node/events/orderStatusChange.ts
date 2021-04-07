@@ -6,9 +6,8 @@ export async function orderStatusChange(ctx: StatusChangeContext) {
   const {
     body,
     clients: { oms },
+    vtex: { logger },
   } = ctx
-
-  console.log('event', body)
 
   if (body.domain === 'Marketplace') {
     return
@@ -18,17 +17,19 @@ export async function orderStatusChange(ctx: StatusChangeContext) {
   try {
     order = await oms.getOrder(body.orderId)
   } catch (error) {
-    console.log(error)
+    logger.error({
+      error,
+      message: 'YotpoIntegration-GetOrderError',
+    })
   }
 
   if (!order) {
     return
   }
 
-  console.log('event order =>', order)
+  const items: any = []
 
   order.items.forEach(async (item: any) => {
-    console.log('item =>', item)
     const data = {
       orderId: order.orderId,
       posted: false,
@@ -43,12 +44,16 @@ export async function orderStatusChange(ctx: StatusChangeContext) {
       productUrl: item.detailUrl,
     }
 
+    items.push(data)
     try {
       await resolvers.Mutation.addOrder(null, data, ctx)
     } catch (error) {
-      console.log(error)
+      logger.error({
+        error,
+        message: 'YotpoIntegration-OrderStatusChangeError',
+      })
     }
   })
 
-  await yotpo(ctx)
+  await yotpo(items, ctx)
 }

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { ExternalClient, InstanceOptions, IOContext } from '@vtex/api'
 
 const FOUR_SECONDS = 4 * 1000
