@@ -24,7 +24,7 @@ export default class YotpoClient extends ExternalClient {
       `/core/v3/stores/${clientId}/register_purchase`,
       body,
       {
-        headers: { token },
+        headers: { 'X-Yotpo-Token': token },
       }
     )
   }

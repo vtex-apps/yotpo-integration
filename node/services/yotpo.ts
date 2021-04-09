@@ -14,23 +14,24 @@ export const yotpo = async (items: any, ctx: Context | StatusChangeContext) => {
   console.log('settings', settings)
 
   const { clientId, clientSecret } = settings
+  const tokenBody = {
+    secret: clientSecret,
+  }
 
   if (!settings.token) {
-    const tokenBody = {
-      secret: clientSecret,
-    }
-
     const token: any = await YotpoClient.getToken(clientId, tokenBody)
     settings.token = token.access_token
-    console.log(token)
     await resolvers.Mutation.saveSettings(null, settings, ctx)
   }
 
   items.forEach(async (order: any) => {
+    const date = new Date(order.orderDate)
+    const dateString = date.toISOString()
+
     const itemBody = {
       purchase: {
         external_order_id: order.orderId,
-        order_date: order.orderDate,
+        order_date: dateString,
         customer: {
           external_id: order.customerId,
           first_name: order.customerFirstName,
@@ -56,12 +57,25 @@ export const yotpo = async (items: any, ctx: Context | StatusChangeContext) => {
         settings.clientId,
         itemBody
       )
+
       await resolvers.Mutation.updateOrder(null, { id: order.id }, ctx)
-    } catch (error) {
-      logger.error({
-        error,
-        message: 'YotpoIntegration-YotpoPostOrderError',
-      })
+    } catch {
+      try {
+        const token: any = await YotpoClient.getToken(clientId, tokenBody)
+        settings.token = token.access_token
+        await resolvers.Mutation.saveSettings(null, settings, ctx)
+
+        await YotpoClient.postOrderInfo(
+          settings.token,
+          settings.clientId,
+          itemBody
+        )
+      } catch (error) {
+        logger.error({
+          error,
+          message: 'YotpoIntegration-YotpoPostOrderError',
+        })
+      }
     }
   })
 }
