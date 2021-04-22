@@ -1,10 +1,12 @@
 {
-  "name": "Yotpo Integration",
-  "headline": "An integration with Yotpo",
-  "overview": "Sends new orders to Yotpo",
-  "features": ["Sends new orders to Yotpo"],
-  "websiteURL": "https://vtex.com/",
+  "name": "Yotpo",
+  "headline": "Yotpo Integration",
+  "overview": "Yotpo's eCommerce marketing platform offers the most advanced solutions for customer reviews, visual marketing, loyalty, referrals, and SMS marketing. For more information, visit the Yotpo Website (https://www.yotpo.com/).",
+
+  "features": ["Sends orders to Yotpo on creation of an invoice"],
+  "additionalInformation": "Please head over to the official docs to see advanced setup instructions.",
+  "websiteURL": "https://yotpo.com/",
   "support": {
-    "url": "https://help-tickets.vtex.com/en/support?app=vtex.yotpoIntegration"
+    "url": "https://yotpo.com/"
   }
 }

@@ -1,10 +1,12 @@
 {
-  "name": "Yotpo Integration",
-  "headline": "Uma integração com o Yotpo",
-  "overview": "Envia novos pedidos para o Yotpo",
-  "features": ["Envia novos pedidos para o Yotpo"],
-  "websiteURL": "https://vtex.com/",
+  "name": "Yotpo",
+  "headline": "Yotpo Integration",
+  "overview": "A plataforma de ecommerce da Yotpo oferece a solução mais avançada para avaliações de clientes, marketing visual, fidelidade, indicações e SMS marketing. Para mais informações, visite o site da Yotpo (https://www.yotpo.com/).",
+
+  "features": ["Envia pedidos para a Yotpo ao criar uma fatura"],
+  "additionalInformation": "Confira a documentação do app para instruções detalhadas de instalação.",
+  "websiteURL": "https://yotpo.com/",
   "support": {
-    "url": "https://help-tickets.vtex.com/en/support?app=vtex.yotpoIntegration"
+    "url": "https://yotpo.com/"
   }
 }
