@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-import { resolvers } from '../resolvers'
 import { yotpo } from '../services/yotpo'
 
 export async function orderStatusChange(ctx: StatusChangeContext) {
@@ -45,14 +44,6 @@ export async function orderStatusChange(ctx: StatusChangeContext) {
     }
 
     items.push(data)
-    try {
-      await resolvers.Mutation.addOrder(null, data, ctx)
-    } catch (error) {
-      logger.error({
-        error,
-        message: 'YotpoIntegration-OrderStatusChangeError',
-      })
-    }
   })
 
   await yotpo(items, ctx)

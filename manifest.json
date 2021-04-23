@@ -21,6 +21,7 @@
     "graphql": "1.x"
   },
   "billingOptions": {
+    "setupRoute": "/admin/app/yotpo-integration/",
     "termsURL": "https://compliance.vtex.com/gdpr/policies/vtex-privacy-policy",
     "support": {
       "url": "https://help-tickets.vtex.com/en/support?app=vtex.yotpo-integration"

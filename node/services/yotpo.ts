@@ -11,7 +11,6 @@ export const yotpo = async (items: any, ctx: Context | StatusChangeContext) => {
   } = ctx
 
   const settings = await resolvers.Query.config(null, null, ctx)
-  console.log('settings', settings)
 
   const { clientId, clientSecret } = settings
   const tokenBody = {
@@ -57,8 +56,6 @@ export const yotpo = async (items: any, ctx: Context | StatusChangeContext) => {
         settings.clientId,
         itemBody
       )
-
-      await resolvers.Mutation.updateOrder(null, { id: order.id }, ctx)
     } catch {
       try {
         const token: any = await YotpoClient.getToken(clientId, tokenBody)
