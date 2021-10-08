@@ -1,6 +1,6 @@
 {
   "name": "Yotpo",
-  "headline": "Yotpo Integration",
+  "headline": "Integrate with Yotpo to take advantage of their advanced marketing platform.",
   "overview": "Yotpo's eCommerce marketing platform offers the most advanced solutions for customer reviews, visual marketing, loyalty, referrals, and SMS marketing. For more information, visit the Yotpo Website (https://www.yotpo.com/).",
 
   "features": ["Sends orders to Yotpo on creation of an invoice"],
