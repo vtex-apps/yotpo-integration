@@ -9,7 +9,7 @@
   "routes": {
     "yotpoIntegration": {
       "path": "/_v/api/yotpo/update",
-      "public": true
+      "public": false
     }
   },
   "events": {
