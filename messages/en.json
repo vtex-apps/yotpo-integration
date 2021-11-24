@@ -3,5 +3,7 @@
   "admin/settings.label": "Settings",
   "admin/settings.id.label": "Client ID",
   "admin/settings.secret.label": "Client Secret",
-  "admin/settings.button.label": "Save"
+  "admin/settings.button.label": "Save",
+  "admin/settings.save.success": "Settings saved",
+  "admin/settings.save.error": "Error saving"
 }

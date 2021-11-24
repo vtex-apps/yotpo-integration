@@ -172,7 +172,6 @@ export const resolvers = {
       const app: string = getAppId()
       const settings = {
         schema: null,
-        // schemaVersion: SCHEMA_VERSION,
         title: 'Yotpo Integration',
         clientId: args.clientId,
         clientSecret: args.clientSecret,

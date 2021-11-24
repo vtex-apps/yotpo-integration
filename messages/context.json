@@ -3,5 +3,7 @@
   "admin/settings.label": "admin/settings.label",
   "admin/settings.id.label": "admin/settings.id.label",
   "admin/settings.secret.label": "admin/settings.secret.label",
-  "admin/settings.button.label": "admin/settings.button.label"
+  "admin/settings.button.label": "admin/settings.button.label",
+  "admin/settings.save.success": "admin/settings.save.success",
+  "admin/settings.save.error": "admin/settings.save.error"
 }

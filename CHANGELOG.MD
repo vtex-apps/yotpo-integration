@@ -9,4 +9,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
+- Add alerts for settings
+- Change update route to be private
+- Route settings button in app store to the admin page
+
+### Added
+
 - Add metadata translations
