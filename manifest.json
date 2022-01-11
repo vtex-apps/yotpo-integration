@@ -28,9 +28,7 @@
     },
     "free": true,
     "type": "free",
-    "availableCountries": [
-      "*"
-    ]
+    "availableCountries": ["*"]
   },
   "policies": [
     {
@@ -62,7 +60,7 @@
       "name": "outbound-access",
       "attrs": {
         "host": "api.yotpo.com",
-        "path": "/*"
+        "path": "/core/v3/stores/*"
       }
     }
   ],

@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Apps } from '@vtex/api'
 
 const getAppId = (): string => {
   return process.env.VTEX_APP_ID ?? ''
@@ -82,10 +81,9 @@ export const resolvers = {
     config: async (_: any, __: any, ctx: any) => {
       const {
         vtex: { account, authToken },
-        clients: { hub },
+        clients: { apps, hub },
       } = ctx
 
-      const apps = new Apps(ctx.vtex)
       const app: string = getAppId()
       let settings = await apps.getAppSettings(app)
       const defaultSettings = {
@@ -164,11 +162,9 @@ export const resolvers = {
       ctx: Context | StatusChangeContext
     ) => {
       const {
-        // eslint-disable-next-line no-empty-pattern
-        clients: {},
+        clients: { apps },
       } = ctx
 
-      const apps = new Apps(ctx.vtex)
       const app: string = getAppId()
       const settings = {
         schema: null,
