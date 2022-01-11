@@ -1,7 +1,7 @@
 {
   "name": "yotpo-integration",
   "vendor": "vtex",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "title": "Yotpo Integration",
   "description": "",
   "mustUpdateAt": "2022-08-28",
@@ -28,7 +28,9 @@
     },
     "free": true,
     "type": "free",
-    "availableCountries": ["*"]
+    "availableCountries": [
+      "*"
+    ]
   },
   "policies": [
     {
