@@ -9,7 +9,8 @@
     "postreleasy": "vtex publish"
   },
   "dependencies": {
-    "vtex.styleguide": "9.x"
+    "vtex.styleguide": "9.x",
+    "vtex.catalog-graphql": "1.x"
   },
   "builders": {
     "react": "3.x",
@@ -28,9 +29,7 @@
     },
     "free": true,
     "type": "free",
-    "availableCountries": [
-      "*"
-    ]
+    "availableCountries": ["*"]
   },
   "policies": [
     {
@@ -64,6 +63,16 @@
         "host": "api.yotpo.com",
         "path": "/core/v3/stores/*"
       }
+    },
+    {
+      "name": "outbound-access",
+      "attrs": {
+        "host": "portal.vtexcommercestable.com.br",
+        "path": "/api/segments/*"
+      }
+    },
+    {
+      "name": "vtex.catalog-graphql:resolve-graphql"
     }
   ],
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
