@@ -5,12 +5,17 @@ import {
   RecorderState,
   ServiceContext,
   EventContext,
+  method,
 } from '@vtex/api'
 
 import { Clients } from './clients'
 import { resolvers } from './resolvers'
 import { orderStatusChange } from './events/orderStatusChange'
 import { yotpoIntegration } from './routes/yotpoIntegration'
+
+import { throttle } from './middlewares/throttle'
+import { pushNotification } from './middlewares/pushNotification'
+import { locale } from './middlewares/locale'
 
 const TIMEOUT_MS = 800
 
@@ -50,5 +55,8 @@ export default new Service<Clients, RecorderState, ParamsContext>({
   },
   routes: {
     yotpoIntegration,
+    notify: method({
+      POST: [throttle, locale, pushNotification],
+    }),
   },
 })

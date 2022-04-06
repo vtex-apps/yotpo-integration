@@ -10,12 +10,18 @@
     "yotpoIntegration": {
       "path": "/_v/api/yotpo/update",
       "public": false
+    },
+    "notify": {
+      "path": "/notify",
+      "public": true
     }
   },
   "events": {
     "orderStatusChange": {
       "sender": "vtex.orders-broadcast",
-      "topics": ["invoiced"]
+      "topics": [
+        "invoiced"
+      ]
     }
   }
 }
