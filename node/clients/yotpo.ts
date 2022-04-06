@@ -28,4 +28,18 @@ export default class YotpoClient extends ExternalClient {
       }
     )
   }
+
+  public async postProductInfo(
+    token: string,
+    clientId: string,
+    body: {
+      external_id: string
+      name: string
+      url: string
+    }
+  ): Promise<string> {
+    return this.http.post(`/core/v3/stores/${clientId}/products`, body, {
+      headers: { 'X-Yotpo-Token': token },
+    })
+  }
 }
