@@ -4,10 +4,20 @@
 
 import { resolvers } from '../resolvers'
 
-export const yotpo = async (items: any, ctx: Context | StatusChangeContext) => {
+interface YotpoSettings {
+  schema: boolean
+  title: string
+  clientId: string
+  clientSecret: string
+  token: string
+  schemaVersion: string
+}
+
+export const yotpoGetToken = async (
+  ctx: Context | StatusChangeContext
+): Promise<YotpoSettings> => {
   const {
     clients: { yotpo: YotpoClient },
-    vtex: { logger },
   } = ctx
 
   const settings = await resolvers.Query.config(null, null, ctx)
@@ -21,6 +31,23 @@ export const yotpo = async (items: any, ctx: Context | StatusChangeContext) => {
     const token: any = await YotpoClient.getToken(clientId, tokenBody)
     settings.token = token.access_token
     await resolvers.Mutation.saveSettings(null, settings, ctx)
+  }
+
+  return settings
+}
+
+export const yotpo = async (items: any, ctx: Context | StatusChangeContext) => {
+  const {
+    clients: { yotpo: YotpoClient },
+    vtex: { logger },
+  } = ctx
+
+  const settings = await yotpoGetToken(ctx)
+
+  const { clientId, clientSecret } = settings
+
+  const tokenBody = {
+    secret: clientSecret,
   }
 
   items.forEach(async (order: any) => {
