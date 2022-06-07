@@ -1,5 +1,4 @@
 /* eslint-disable vtex/prefer-early-return */
-/* eslint-disable no-console */
 /* eslint-disable no-await-in-loop */
 
 import { resolvers } from '../resolvers'

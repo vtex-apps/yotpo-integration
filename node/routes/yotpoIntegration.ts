@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { yotpoService } from '../services'
 
 export async function yotpoIntegration(ctx: Context) {

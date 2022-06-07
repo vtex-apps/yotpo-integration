@@ -5,5 +5,6 @@
   "admin/settings.secret.label": "",
   "admin/settings.button.label": "",
   "admin/settings.save.success": "",
-  "admin/settings.save.error": ""
+  "admin/settings.save.error": "",
+  "admin/settings.save.incorrect": ""
 }

@@ -1,9 +1,10 @@
 {
   "admin/navigation.label": "Yotpo Integration",
   "admin/settings.label": "Settings",
-  "admin/settings.id.label": "Client ID",
-  "admin/settings.secret.label": "Client Secret",
+  "admin/settings.id.label": "App Key",
+  "admin/settings.secret.label": "Secret Key",
   "admin/settings.button.label": "Save",
   "admin/settings.save.success": "Settings saved",
-  "admin/settings.save.error": "Error saving"
+  "admin/settings.save.error": "Error saving",
+  "admin/settings.save.incorrect": "Incorrect Key or Secret"
 }

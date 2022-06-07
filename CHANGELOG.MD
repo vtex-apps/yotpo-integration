@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Add user validation at the setting
+- Changed the name of the inputs
+- Remove the MasterData schemas
+
 ### Changed
 
 - Update paths for external requests

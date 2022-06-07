@@ -1,0 +1,3 @@
+query Authentication($clientId: String, $clientSecret: String) {
+  authentication(clientId: $clientId, clientSecret: $clientSecret)
+}

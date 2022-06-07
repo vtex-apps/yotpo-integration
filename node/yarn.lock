@@ -1345,10 +1345,10 @@
     semver "^6.3.0"
     tsutils "^3.17.1"
 
-"@vtex/api@6.45.6":
-  version "6.45.6"
-  resolved "https://registry.yarnpkg.com/@vtex/api/-/api-6.45.6.tgz#e5f08476d7c76f26baa1c040666d1364bdd6bc35"
-  integrity sha512-9pDiUxcUzq8RZa9yBex4C8dcAHXBRGAZokvHJ6sykrojq6mJxs+rUTE28TPeeQxwvvKsvrdpsfCUAYQ+UDz+zA==
+"@vtex/api@6.45.12":
+  version "6.45.12"
+  resolved "https://registry.yarnpkg.com/@vtex/api/-/api-6.45.12.tgz#b13c04398b12f576263ea823369f09c970d57479"
+  integrity sha512-SVLKo+Q/TxQy+1UKzH8GswTI3F2OCRCLfgaNQOrVAVdbM6Ci4wzTeX8j/S4Q1aEEnqBFlH/wVpHf8I6NBa+g9A==
   dependencies:
     "@types/koa" "^2.11.0"
     "@types/koa-compose" "^3.2.3"
@@ -6142,7 +6142,7 @@ static-extend@^0.1.1:
     define-property "^0.2.5"
     object-copy "^0.1.0"
 
-"stats-lite@github:vtex/node-stats-lite#dist":
+stats-lite@vtex/node-stats-lite#dist:
   version "2.2.0"
   resolved "https://codeload.github.com/vtex/node-stats-lite/tar.gz/1b0d39cc41ef7aaecfd541191f877887a2044797"
   dependencies:
@@ -6717,21 +6717,13 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-"vtex.css-handles@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.css-handles@0.4.4/public/@types/vtex.css-handles":
-  version "0.4.4"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.css-handles@0.4.4/public/@types/vtex.css-handles#8c45c6decf9acd2b944e07261686decff93d6422"
+"vtex.styleguide@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.146.1/public/@types/vtex.styleguide":
+  version "9.146.1"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.146.1/public/@types/vtex.styleguide#66db40ca1b78ad77ce4beedabecee320e1ef2ead"
 
-"vtex.product-context@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.product-context@0.9.7/public/@types/vtex.product-context":
-  version "0.9.7"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.product-context@0.9.7/public/@types/vtex.product-context#4024c589f1ba318e92219a88bf18b4e3774dc85c"
-
-"vtex.render-runtime@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@7.42.0/public/@types/vtex.render-runtime":
-  version "7.42.0"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@7.42.0/public/@types/vtex.render-runtime#b76f76d8f763385cfc57452386bbd20ab6fe9e9b"
-
-"vtex.styleguide@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.134.1/public/@types/vtex.styleguide":
-  version "9.134.1"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.134.1/public/@types/vtex.styleguide#7210ed4908f4e6482d2499d71c4cfcc21e3dfd6a"
+"vtex.yotpo-integration@https://yotpo--sandboxusdev.myvtex.com/_v/private/typings/linked/v1/vtex.yotpo-integration@0.1.1+build1654626162/public/@types/vtex.yotpo-integration":
+  version "0.1.1"
+  resolved "https://yotpo--sandboxusdev.myvtex.com/_v/private/typings/linked/v1/vtex.yotpo-integration@0.1.1+build1654626162/public/@types/vtex.yotpo-integration#8a2c8663a831adb4c681a1abb74c7552816f00d3"
 
 w3c-hr-time@^1.0.1:
   version "1.0.1"
