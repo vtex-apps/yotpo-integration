@@ -40,5 +40,5 @@
     "vtex.styleguide": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.146.1/public/@types/vtex.styleguide",
     "vtex.yotpo-integration": "https://yotpo--sandboxusdev.myvtex.com/_v/private/typings/linked/v1/vtex.yotpo-integration@0.1.1+build1654626162/public/@types/vtex.yotpo-integration"
   },
-  "version": "0.1.1"
+  "version": "0.2.0"
 }
