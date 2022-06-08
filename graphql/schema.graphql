@@ -1,10 +1,27 @@
 type Query {
   config: Config @cacheControl(scope: PRIVATE)
+  getOrders: [Order]
+    @cacheControl(scope: PRIVATE, maxAge: Short)
+    @deprecated(reason: "This query was deprecated")
   authentication(clientId: String, clientSecret: String): Boolean
 }
 
 type Mutation {
   saveSettings(title: String, clientId: String, clientSecret: String): Boolean
+  addOrder(
+    orderId: String
+    posted: Boolean
+    orderDate: String
+    customerId: String
+    customerFirstName: String
+    customerLastName: String
+    customerEmail: String
+    quantity: Int
+    productId: String
+    productName: String
+    productUrl: String
+  ): String @deprecated(reason: "This query was deprecated")
+  updateOrder(id: ID): String @deprecated(reason: "This query was deprecated")
 }
 
 type Config {
@@ -13,4 +30,19 @@ type Config {
   clientId: String
   clientSecret: String
   token: String
+}
+
+type Order {
+  id: String
+  orderId: String
+  posted: Boolean
+  orderDate: String
+  customerId: String
+  customerFirstName: String
+  customerLastName: String
+  customerEmail: String
+  quantity: Int
+  productId: String
+  productName: String
+  productUrl: String
 }

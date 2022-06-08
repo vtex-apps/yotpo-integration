@@ -30,6 +30,9 @@ export const resolvers = {
 
       return settings
     },
+    getOrders: async (_: any, __: any | StatusChangeContext) => {
+      return []
+    },
     authentication: async (
       _: any,
       args: { clientId: string; clientSecret: string },
@@ -73,6 +76,12 @@ export const resolvers = {
       await apps.saveAppSettings(app, settings)
 
       return true
+    },
+    addOrder: async (_: any | StatusChangeContext) => {
+      return ''
+    },
+    updateOrder: async (_: any | StatusChangeContext) => {
+      return ''
     },
   },
 }
