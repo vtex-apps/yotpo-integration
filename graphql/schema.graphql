@@ -20,8 +20,9 @@ type Mutation {
     productId: String
     productName: String
     productUrl: String
-  ): String @deprecated(reason: "This query was deprecated")
-  updateOrder(id: ID): String @deprecated(reason: "This query was deprecated")
+  ): String @deprecated(reason: "This mutation was deprecated")
+  updateOrder(id: ID): String
+    @deprecated(reason: "This mutation was deprecated")
 }
 
 type Config {
