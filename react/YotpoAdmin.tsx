@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react'
-import { FormattedMessage, injectIntl, defineMessages } from 'react-intl'
-import { compose, graphql, useLazyQuery, useMutation } from 'react-apollo'
+import { injectIntl, defineMessages } from 'react-intl'
+import { compose, graphql, useMutation, useQuery } from 'react-apollo'
 import {
   Layout,
   PageBlock,
@@ -12,6 +12,7 @@ import {
 
 import SAVE_SETTINGS from './queries/saveSettings.gql'
 import CONFIG from './queries/config.gql'
+import AUTHENTICATION from './queries/authentication.gql'
 
 import './styles.global.css'
 
@@ -45,6 +46,10 @@ const YotpoAdmin: FC<any> = ({ data: { config }, intl }) => {
       id: 'admin/settings.save.error',
       defaultMessage: 'Error saving',
     },
+    saveIncorrect: {
+      id: 'admin/settings.save.incorrect',
+      defaultMessage: 'Incorrect Key or Secret',
+    },
   })
 
   const [state, setState] = useState<any>({
@@ -52,11 +57,25 @@ const YotpoAdmin: FC<any> = ({ data: { config }, intl }) => {
     clientSecret: undefined,
     saveSuccess: false,
     saveError: false,
+    saveIncorrect: false,
   })
 
-  const { clientId, clientSecret, saveSuccess, saveError } = state
+  const {
+    clientId,
+    clientSecret,
+    saveSuccess,
+    saveError,
+    saveIncorrect,
+  } = state
 
   const [saveSettings, { loading: saveLoading }] = useMutation(SAVE_SETTINGS)
+
+  const { data: authentication } = useQuery(AUTHENTICATION, {
+    variables: {
+      clientId,
+      clientSecret,
+    },
+  })
 
   if (config && clientSecret === undefined) {
     setState({
@@ -67,22 +86,29 @@ const YotpoAdmin: FC<any> = ({ data: { config }, intl }) => {
   }
 
   const handleSave = () => {
-    try {
-      saveSettings({
-        variables: {
-          clientId,
-          clientSecret,
-        },
-      })
-    } catch {
+    if (authentication.authentication) {
+      try {
+        saveSettings({
+          variables: {
+            clientId,
+            clientSecret,
+          },
+        })
+      } catch {
+        setState({
+          ...state,
+          saveError: true,
+        })
+      } finally {
+        setState({
+          ...state,
+          saveSuccess: true,
+        })
+      }
+    } else {
       setState({
         ...state,
-        saveError: true,
-      })
-    } finally {
-      setState({
-        ...state,
-        saveSuccess: true,
+        saveIncorrect: true,
       })
     }
   }
@@ -143,6 +169,18 @@ const YotpoAdmin: FC<any> = ({ data: { config }, intl }) => {
                 onClose={() => setState({ ...state, saveError: false })}
               >
                 {intl.formatMessage(messages.saveError)}
+              </Alert>
+            </div>
+          )}
+
+          {saveIncorrect && (
+            <div className="mt5">
+              <Alert
+                autoClose={5000}
+                type="error"
+                onClose={() => setState({ ...state, saveIncorrect: false })}
+              >
+                {intl.formatMessage(messages.saveIncorrect)}
               </Alert>
             </div>
           )}

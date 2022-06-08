@@ -1,6 +1,9 @@
 type Query {
   config: Config @cacheControl(scope: PRIVATE)
-  getOrders: [Order] @cacheControl(scope: PRIVATE, maxAge: Short)
+  getOrders: [Order]
+    @cacheControl(scope: PRIVATE, maxAge: Short)
+    @deprecated(reason: "This query was deprecated")
+  authentication(clientId: String, clientSecret: String): Boolean
 }
 
 type Mutation {
@@ -17,8 +20,9 @@ type Mutation {
     productId: String
     productName: String
     productUrl: String
-  ): String
+  ): String @deprecated(reason: "This mutation was deprecated")
   updateOrder(id: ID): String
+    @deprecated(reason: "This mutation was deprecated")
 }
 
 type Config {

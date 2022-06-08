@@ -1,3 +1,0 @@
-mutation UpdateOrder($id: ID) {
-  updateOrder(id: $id)
-}
