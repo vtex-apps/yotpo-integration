@@ -86,12 +86,7 @@ const YotpoAdmin: FC<any> = ({ data: { config }, intl }) => {
   }
 
   const handleSave = () => {
-    if (authentication.authentication === false) {
-      setState({
-        ...state,
-        saveIncorrect: true,
-      })
-    } else {
+    if (authentication.authentication) {
       try {
         saveSettings({
           variables: {
@@ -110,6 +105,11 @@ const YotpoAdmin: FC<any> = ({ data: { config }, intl }) => {
           saveSuccess: true,
         })
       }
+    } else {
+      setState({
+        ...state,
+        saveIncorrect: true,
+      })
     }
   }
 

@@ -45,14 +45,10 @@ export const resolvers = {
       try {
         const token: any = await YotpoClient.getToken(args.clientId, tokenBody)
 
-        if (token.access_token === undefined) {
-          return false
-        }
+        return token.access_token !== undefined
       } catch {
         return false
       }
-
-      return true
     },
   },
   Mutation: {
