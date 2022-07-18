@@ -6721,10 +6721,6 @@ verror@1.10.0:
   version "9.146.1"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.146.1/public/@types/vtex.styleguide#66db40ca1b78ad77ce4beedabecee320e1ef2ead"
 
-"vtex.yotpo-integration@https://yotpo--sandboxusdev.myvtex.com/_v/private/typings/linked/v1/vtex.yotpo-integration@0.1.1+build1654626162/public/@types/vtex.yotpo-integration":
-  version "0.1.1"
-  resolved "https://yotpo--sandboxusdev.myvtex.com/_v/private/typings/linked/v1/vtex.yotpo-integration@0.1.1+build1654626162/public/@types/vtex.yotpo-integration#8a2c8663a831adb4c681a1abb74c7552816f00d3"
-
 w3c-hr-time@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/w3c-hr-time/-/w3c-hr-time-1.0.1.tgz#82ac2bff63d950ea9e3189a58a65625fedf19045"

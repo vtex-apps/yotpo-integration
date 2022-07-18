@@ -1,10 +1,9 @@
-/* eslint-disable no-console */
 import { yotpo } from '../services/yotpo'
 
 export async function orderStatusChange(ctx: StatusChangeContext) {
   const {
     body,
-    clients: { oms },
+    clients: { oms, profile },
     vtex: { logger },
   } = ctx
 
@@ -26,8 +25,19 @@ export async function orderStatusChange(ctx: StatusChangeContext) {
     return
   }
 
-  const items: any = []
+  let profileInfo: any
+  try {
+    profileInfo = await profile.getProfileInfo(
+      order.clientProfileData.userProfileId
+    )
+  } catch (error) {
+    logger.error({
+      error,
+      message: 'YotpoIntegration-GetCustomerEmailError',
+    })
+  }
 
+  const items: any = []
   order.items.forEach(async (item: any) => {
     const data = {
       orderId: order.orderId,
@@ -36,7 +46,7 @@ export async function orderStatusChange(ctx: StatusChangeContext) {
       customerId: order.clientProfileData.userProfileId,
       customerFirstName: order.clientProfileData.firstName,
       customerLastName: order.clientProfileData.lastName,
-      customerEmail: order.clientProfileData.email,
+      customerEmail: profileInfo?.email || order.clientProfileData.email,
       quantity: item.quantity,
       productId: item.productId,
       productName: item.name,
