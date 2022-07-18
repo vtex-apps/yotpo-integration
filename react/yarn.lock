@@ -255,10 +255,6 @@ typescript@3.9.7:
   version "9.146.1"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.146.1/public/@types/vtex.styleguide#66db40ca1b78ad77ce4beedabecee320e1ef2ead"
 
-"vtex.yotpo-integration@https://yotpo--sandboxusdev.myvtex.com/_v/private/typings/linked/v1/vtex.yotpo-integration@0.1.1+build1654626162/public/@types/vtex.yotpo-integration":
-  version "0.1.1"
-  resolved "https://yotpo--sandboxusdev.myvtex.com/_v/private/typings/linked/v1/vtex.yotpo-integration@0.1.1+build1654626162/public/@types/vtex.yotpo-integration#8a2c8663a831adb4c681a1abb74c7552816f00d3"
-
 zen-observable-ts@^0.8.18:
   version "0.8.18"
   resolved "https://registry.yarnpkg.com/zen-observable-ts/-/zen-observable-ts-0.8.18.tgz#ade44b1060cc4a800627856ec10b9c67f5f639c8"
