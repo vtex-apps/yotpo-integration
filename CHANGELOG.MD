@@ -7,12 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-### Added
-
-- Add quality engineering actions
-
 ### Fixed
 
+- Add quality engineering actions
 - Add user validation at the setting
 - Changed the name of the inputs
 - Remove the MasterData schemas
