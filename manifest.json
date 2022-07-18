@@ -69,7 +69,7 @@
       "name": "outbound-access",
       "attrs": {
         "host": "portal.vtexcommercestable.com.br",
-        "path": "/api/scheduler/*"
+        "path": "/api/*"
       }
     }
   ],
