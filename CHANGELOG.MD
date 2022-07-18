@@ -9,7 +9,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
+- Send unmasked email address
+
+### Added
+
 - Add quality engineering actions
+
+## [0.2.0] - 2022-06-08
+
+### Fixed
+
 - Add user validation at the setting
 - Changed the name of the inputs
 - Remove the MasterData schemas
